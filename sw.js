@@ -1,7 +1,7 @@
 // Bump CACHE whenever index.html, manifest.json, or the icons change.
 // guide.md and CHANGELOG.md are always fetched fresh when online, so a content
 // update never needs a cache bump.
-const CACHE = 'mfg-v1';
+const CACHE = 'mfg-v2';
 const SHELL = ['./', './index.html', './manifest.json', './guide.md', './CHANGELOG.md',
   './icons/icon-180.png', './icons/icon-192.png', './icons/icon-512.png'];
 

@@ -439,7 +439,7 @@ const I={
    RENDERERS
    ============================================================ */
 function bar(title, sub, opts={}){
-  const left = opts.home? `<a class="ib" href="#home" aria-label="Home">${I.home}</a>` : `<button class="ib" onclick="history.length>1?history.back():location.hash='#home'" aria-label="Back">${I.back}</button>`;
+  const left = opts.nav===false ? '<span class="ib"></span>' : `<a class="ib" href="${opts.back||'#home'}" aria-label="Back">${I.back}</a>`;
   const right = opts.noSearch? '' : `<a class="ib" href="#search" aria-label="Search">${I.search}</a>`;
   return `<div class="bar">${left}<div class="t">${esc(title)}${sub?`<span class="sub">${esc(sub)}</span>`:''}</div>${right}${opts.gear?`<a class="ib" href="#settings" aria-label="Settings">${I.gear}</a>`:''}</div>`;
 }
@@ -500,7 +500,7 @@ function viewHome(){
   const m=G.meta; const seen=store.get('seenVersion',null); const isNew=seen!==null && seen!==m.version;
   const pp=secPhoto(), pv=secVideo(), pe=secEOD(), pl=secLeave();
   const prog=s=>{if(!s)return '';const p=checkProgress(s);return p.d?`<span class="prog">${p.d}/${p.n}</span>`:''};
-  let h=bar('', '', {home:false, gear:true}).replace(/<button class="ib"[^>]*>[\s\S]*?<\/button>/,'<span class="ib"></span>');
+  let h=bar('', '', {nav:false, gear:true});
   h+=`<main><div class="hero"><p class="k">${esc(m.kicker||'')}</p><h1>${esc(m.title||'')}</h1><p class="v">Version ${esc(m.version||'')}, updated ${esc(m.updated||'')}${isNew?'<a class="badge" href="#new">New</a>':''}</p></div>`;
   h+=`<a class="searchbox" href="#search">${I.search}<span>Search the guide</span></a>`;
   h+=`<h2 class="hd">Before you shoot</h2>`;
@@ -518,12 +518,13 @@ function viewHome(){
   return h;
 }
 
-function viewSection(slug, hl){
+function viewSection(slug, hl, params={}){
   const s=G.sections.find(x=>x.slug===slug); if(!s) return viewHome();
   const p=s.part; const list=G.sections.filter(x=>x.part.num>0); const i=list.indexOf(s);
   const prev=i>0?list[i-1]:null, next=i<list.length-1?list[i+1]:null;
   const hasCheck=s.blocks.some(b=>b.type==='check');
-  let h=bar(p.num?`Part ${p.num}`:'', p.num?p.title:'', {}).replace('<div class="t">','<div class="t">');
+  const back = params.from==='search' ? '#search?q='+encodeURIComponent(params.q||'') : '#home';
+  let h=bar(p.num?`Part ${p.num}`:'', p.num?p.title:'', {back});
   h+=`<main><h1 class="sec" style="margin-top:20px">${esc(s.title)}</h1>`;
   if(s.updated) h+=`<span class="upd">Updated ${esc(s.updated)}</span><br>`;
   if(hasCheck){ const pr=checkProgress(s); h+=`<div class="checkbar"><span id="cprog">${pr.d} of ${pr.n} done</span><span>Clears each morning</span><button class="reset" onclick="onReset('${s.slug}')">Start fresh</button></div>`; }
@@ -536,7 +537,7 @@ function viewWalk(slug, n, step){
   const s=G.sections.find(x=>x.slug===slug); if(!s) return viewHome();
   const ols=s.blocks.filter(b=>b.type==='ol'); const ol=ols[+n]||ols[0]; if(!ol) return viewSection(slug);
   const k=Math.min(Math.max(+step||0,0),ol.items.length-1); const x=inline(ol.items[k]); const last=k===ol.items.length-1;
-  let h=bar(s.title,'',{noSearch:true}).replace(/<button class="ib"[^>]*>[\s\S]*?<\/button>/,`<a class="ib" href="#s/${s.slug}" aria-label="Back to section">${I.back}</a>`);
+  let h=bar(s.title,'',{noSearch:true, back:'#s/'+s.slug});
   h+=`<main><div class="wk"><p class="prog">Step ${k+1} of ${ol.items.length}</p><div class="track"><i style="width:${(k+1)/ol.items.length*100}%"></i></div><p class="num">${k+1}</p><p class="txt">${x.html}</p>`;
   h+=`<div class="btns"><button class="sec" onclick="location.hash='#walk/${slug}/${n}/${k-1}'" ${k===0?'disabled':''}>Back</button><button onclick="${last?`location.hash='#s/${slug}';toast('Done')`:`location.hash='#walk/${slug}/${n}/${k+1}'`}">${last?'Done':'Next'}</button></div>`;
   h+=`<p class="awake" id="awake"></p>`;
@@ -562,7 +563,7 @@ function doSearch(q){
   if(!res.length){ out.innerHTML=`<p class="empty">Nothing for "${esc(q)}". Try a different word, or browse the parts from the home screen.</p>`; return; }
   out.innerHTML=`<ul class="res">`+res.slice(0,30).map(r=>{
     const p=r.sec.part; const first=r.snippets[0];
-    return `<li><a href="#s/${r.sec.slug}${first&&first.id!=null?'?hl='+first.id:''}" onclick="remember('${esc(q).replace(/'/g,'&#39;')}')"><p class="rp">${p.num?`Part ${p.num}. `:''}${esc(p.title)}</p><span class="rt">${esc(r.sec.title)}</span>${r.snippets.map(sn=>`<p class="rs">${snippet(sn.text,sn.terms)}</p>`).join('')}</a></li>`;
+    return `<li><a href="#s/${r.sec.slug}?from=search&q=${encodeURIComponent(q)}${first&&first.id!=null?'&hl='+first.id:''}" onclick="remember('${esc(q).replace(/'/g,'&#39;')}')"><p class="rp">${p.num?`Part ${p.num}. `:''}${esc(p.title)}</p><span class="rt">${esc(r.sec.title)}</span>${r.snippets.map(sn=>`<p class="rs">${snippet(sn.text,sn.terms)}</p>`).join('')}</a></li>`;
   }).join('')+`</ul>`;
 }
 function setQuery(q){const i=document.getElementById('q');i.value=q;doSearch(q)}
@@ -639,7 +640,7 @@ async function render(){
   const {seg,params}=route(); const v=seg[0];
   releaseWake();
   let h='';
-  if(v==='s') h=viewSection(seg[1], params.hl);
+  if(v==='s') h=viewSection(seg[1], params.hl, params);
   else if(v==='walk') h=viewWalk(seg[1], seg[2]||0, seg[3]||0);
   else if(v==='search') h=viewSearch(params.q||'');
   else if(v==='quick') h=viewQuick();
@@ -649,7 +650,7 @@ async function render(){
   else if(v==='about') h=viewAbout();
   else h=viewHome();
   app.innerHTML=h;
-  if(v==='search'){ const i=document.getElementById('q'); i.addEventListener('input',e=>doSearch(e.target.value)); doSearch(i.value); if(!i.value) setTimeout(()=>i.focus(),50); }
+  if(v==='search'){ const i=document.getElementById('q'); i.addEventListener('input',e=>{doSearch(e.target.value); history.replaceState(null,'','#search?q='+encodeURIComponent(e.target.value));}); doSearch(i.value); if(!i.value) setTimeout(()=>i.focus(),50); }
   else if(v==='walk'){ requestWake(); }
   if(v==='s' && params.hl!=null){ const el=document.querySelector(`[data-b="${params.hl}"]`); if(el){ el.classList.add('hl'); setTimeout(()=>el.scrollIntoView({block:'center',behavior:'smooth'}),60); setTimeout(()=>el.classList.remove('hl'),3500); } }
   else window.scrollTo(0,0);
