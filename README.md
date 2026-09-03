@@ -1,0 +1,71 @@
+# Moment Field Guide, web app
+
+A phone-first, offline-capable reference built from a single markdown file. `guide.md` is the master. The app renders it directly, and the Word document is generated from it.
+
+## Files
+
+| File | What it is |
+| --- | --- |
+| `guide.md` | The master content. Edit this, nothing else, to change the guide. |
+| `CHANGELOG.md` | One entry per version. The app's What's New view reads it. |
+| `index.html` | The whole app. No build step, no dependencies. |
+| `manifest.json`, `sw.js`, `icons/` | Home-screen install and offline support. |
+| `versions/` | Prior versions of `guide.md` and the generated docx, kept for reference. |
+
+## Put it on GitHub Pages
+
+1. Create a new repository on GitHub (public, or private if your plan supports Pages from private repos). Name it something like `moment-field-guide`.
+2. Upload every file in this folder to the root of the repo, keeping the `icons/` folder.
+3. In the repo, open Settings, then Pages. Under Build and deployment, set Source to "Deploy from a branch", pick `main` and `/ (root)`, and save.
+4. After a minute the site is live at `https://<your-username>.github.io/moment-field-guide/`.
+5. On the iPhone, open that link in Safari, tap Share, then Add to Home Screen. It opens full screen and keeps working with no signal.
+
+Note: GitHub Pages sites are public even when the repo is private. The URL is not discoverable, but anyone with the link can read it.
+
+## Optional: notes by email
+
+Open `index.html`, find `CONFIG` near the top of the script, and put your email in `notesEmail`. The Notes view then gets an Email button that opens Mail with all saved notes in the body.
+
+## Markdown conventions in guide.md
+
+These are what the app and the docx generator understand. Keep to them and both outputs stay in sync.
+
+```
+---                          front matter: title, version, updated, quick reference, synonyms
+# Part 1. Before you shoot   a part
+## Section title {updated: 28 Aug}   a section, with an optional update tag
+### Subsection
+*Italic line*                a lead-in or aside
+- [ ] **Item title** *Note*   a checklist item: bold title, italic note
+- bullet                     a plain bullet
+1. step                      a numbered step (4 or more get a walkthrough button)
+| a | b |                    a table; first column is treated as the label
+::: note Title               a callout box
+text
+:::
+{new}                        anywhere on a line: an amber dot marking a new line
+```
+
+The `quick:` list in the front matter is the Quick reference card. Each line is `Label | Value`. Update the values here when they change in the body of the guide.
+
+The `synonyms:` list teaches search. Each line is `term | alias, alias, alias`. Add a line whenever Marnie uses a word for something that the guide calls something else.
+
+## Updating after a session
+
+1. In a Claude session, upload the current `guide.md`, the Zoom transcript, and `CHANGELOG.md`.
+2. Ask for the update. Claude returns a new `guide.md` with the version bumped, `{updated: DD Mon}` tags on changed sections, `{new}` on new lines, a fresh "New in Version N" table, a new `CHANGELOG.md` entry, and the generated `.docx`.
+3. Before replacing anything, copy the outgoing `guide.md` into `versions/guide-v<N>.md` and the old docx alongside it.
+4. Commit `guide.md` and `CHANGELOG.md` to the repo. GitHub Pages picks it up within a minute. Phones that already have the app fetch the new content the next time they open it online; the What's New chip shows a dot until it is read.
+5. Drop the new docx into Marnie's Google Drive.
+
+`index.html` only changes when the app itself changes. If it does, bump `CACHE` in `sw.js` so phones pick up the new version.
+
+## Running it locally
+
+Any static server works. From this folder:
+
+```
+python3 -m http.server 8000
+```
+
+Then open `http://localhost:8000`. Opening `index.html` directly from disk does not work because the app fetches `guide.md`.
