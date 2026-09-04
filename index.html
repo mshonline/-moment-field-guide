@@ -106,7 +106,9 @@ mark{background:var(--mark);color:inherit;padding:0 2px;border-radius:3px}
 .hl{background:var(--amber-wash);outline:2px solid var(--amber);border-radius:10px;transition:background .8s}
 
 .note{background:var(--teal-wash);border-left:4px solid var(--teal-mid);border-radius:0 12px 12px 0;padding:12px 14px;margin:0 0 16px}
-.note .nt{font-weight:700;margin:0 0 6px}
+.note .nt{font-weight:700;margin:0 0 6px;color:var(--teal-mid)}
+.note.warn{background:var(--amber-wash);border-left-color:var(--amber)}
+.note.warn .nt{color:var(--amber)}
 .note p:last-child,.note ol:last-child,.note ul:last-child{margin-bottom:0}
 
 /* checklist */
@@ -256,10 +258,11 @@ function parseBlocks(lines){
   while(i<lines.length){
     const l = lines[i];
     if(!l.trim()){i++;continue}
-    if(/^:::\s*note\b/.test(l)){
-      const title = l.replace(/^:::\s*note\s*/,'').trim(); const buf=[]; i++;
+    if(/^:::\s*(note|warn)\b/.test(l)){
+      const kind = /^:::\s*warn/.test(l) ? 'warn' : 'note';
+      const title = l.replace(/^:::\s*(note|warn)\s*/,'').trim(); const buf=[]; i++;
       while(i<lines.length && !/^:::\s*$/.test(lines[i])){buf.push(lines[i]);i++}
-      i++; blocks.push({type:'note', title, blocks:parseBlocks(buf)}); continue;
+      i++; blocks.push({type:'note', kind, title, blocks:parseBlocks(buf)}); continue;
     }
     if(/^###\s/.test(l)){ blocks.push({type:'h3', text:l.replace(/^###\s+/,'')}); i++; continue; }
     if(/^- \[[ xX]\]\s/.test(l)){
@@ -478,7 +481,7 @@ function renderBlocks(blocks, sec, ctx={}){
     }
     else if(b.type==='note'){
       const x=inline(b.title);
-      h+=`<div class="note" data-b="${ctx.counter?ctx.counter():''}"><p class="nt">${x.html}${dot(x.isNew)}</p>${renderBlocks(b.blocks, sec, {...ctx, inNote:true})}</div>`;
+      h+=`<div class="note ${b.kind==='warn'?'warn':''}" data-b="${ctx.counter?ctx.counter():''}"><p class="nt">${x.html}${dot(x.isNew)}</p>${renderBlocks(b.blocks, sec, {...ctx, inNote:true})}</div>`;
     }
   }
   return h;

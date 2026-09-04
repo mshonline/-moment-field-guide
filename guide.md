@@ -134,7 +134,7 @@ Settings live in four places, and knowing which one you are in makes the app muc
 | ProRAW | Contrasty light, indoor or out, and anything that might get printed. | Fusion stacks exposures, so it holds highlights noticeably better. It is HDR, which looks right on your phone but can read differently on other screens, so plan a conversion step when handing files off. |
 | 4K Video | Video. | H.264 is SDR with less grading latitude, and in exchange it edits in Premiere without proxies. |
 
-::: note Low light, for now
+::: warn Low light, for now
 A dedicated low light profile is still on the list. Until then: ProRAW on the 1x lens is the stronger choice in dim light, since Fusion stacks exposures in a way Natural cannot.
 :::
 
@@ -202,7 +202,7 @@ Two different things live under the profile tab, and this is the most useful dis
 That just means the profile already matches your current settings. The button only appears when there is something to save.
 :::
 
-::: note Why an unsaved change disappears
+::: warn Why an unsaved change disappears
 This is very likely what happened at Hyannis. You raised the ISO to 400 mid-shoot because the shutter was too slow, but did not save it, and some files came back at ISO 80. Auto-save is deliberately off, so any change you make in the field lives only until the profile is loaded again. Then the saved value quietly takes over. Both profiles are now saved at 400, which removes the problem: your starting point is high enough that any adjustment you make will be downward, and a lost adjustment leaves you no worse off than where you began.
 :::
 
@@ -283,7 +283,7 @@ The aperture is fixed, so the ND is your only way to cut light without touching 
 - For video at 1/48, the ND does the exposure work. Dial it until the zebras clear.
 - For photo in ISO mode, it keeps the whole system in a comfortable range on bright days, and it is what makes slow-shutter motion blur possible in daylight.
 
-::: note Keep away from the darkest extreme
+::: warn Keep away from the darkest extreme
 Your test confirmed it: cranked to maximum and panned across the horizon, artifacts appear. It did not take much backing off for them to clear, so the working range is everything short of the last stretch of the ring. At moderate density the artifact is subtler on the monitor, so when you have been near the extreme, ease off a touch more than looks necessary.
 :::
 
@@ -297,7 +297,7 @@ Confirmed side by side: pointed at a bright sky, ProRAW holds the highlights not
 | Natural, when you want that look | Ride EV at -0.3 to -0.7. The sensor holds shadows far better than highlights, and the raw file is there for lifting them later. |
 | Video | 4K profile, ND dialed in, watch the zebras. |
 
-::: note Still unsettled: Light versus Strong
+::: warn Still unsettled: Light versus Strong
 Natural's dynamic range control behaved differently on the two phones: Strong reduced clipping on one and changed nothing visible on the other. Light remains the setting for now, and this is worth a more controlled look sometime.
 :::
 
@@ -351,11 +351,11 @@ Everything from a shoot day, photo and video, from the camera roll and from the 
 8. Copy the raw captures and the finished copyrighted folder to the archive drive, under a parent folder named for the date and event. {new}
 9. Run the ChronoSync task, iPhone Capture One Sessions Primary to Backup, so your edits and exports land on the backup drive too.
 
-::: note One small check during the rename
+::: warn One small check during the rename
 The prefix to replace can vary. Photos come in as IMG. Video names use the long timecode format regardless of your settings, so glance at what the clips are actually called and set the find-and-replace to match.
 :::
 
-::: note The order matters in one place
+::: warn The order matters in one place
 Two copies before anything gets deleted. Everything else in the sequence has some give, but step 4 always comes before step 5.
 :::
 
@@ -452,7 +452,7 @@ The sessions drive holds the work. The archive holds something different: files 
 | Auto-save (per profile, in Edit Profile) | Off | Keeps field tweaks from rewriting your profiles. |
 | Auto Connect (hardware icon, Location) | Off {new} | The one that was switching your storage to the SD card on its own whenever the phone went into the grip. {new} |
 
-::: note Video ignores the file name setting
+::: warn Video ignores the file name setting
 Whatever you choose, video clips come out with the long timecode name. Nothing to fix, just something to know when you are setting up the batch rename in Capture One.
 :::
 

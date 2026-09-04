@@ -8,7 +8,9 @@ A phone-first, offline-capable reference built from a single markdown file. `gui
 | --- | --- |
 | `guide.md` | The master content. Edit this, nothing else, to change the guide. |
 | `CHANGELOG.md` | One entry per version. The app's What's New view reads it. |
-| `index.html` | The whole app. No build step, no dependencies. |
+| `index.html` | The whole app. No build step, no dependencies. Also holds the markdown parser that `build-docx.js` reuses. |
+| `build-docx.js`, `package.json` | Generates the Word document from `guide.md` in the V3 house style. `npm install` once, then `node build-docx.js`. |
+| `UPDATE.md` | The runbook for updating after a session, including the prompt to paste. |
 | `manifest.json`, `sw.js`, `icons/` | Home-screen install and offline support. |
 | `versions/` | Prior versions of `guide.md` and the generated docx, kept for reference. |
 
@@ -40,7 +42,8 @@ These are what the app and the docx generator understand. Keep to them and both 
 - bullet                     a plain bullet
 1. step                      a numbered step (4 or more get a walkthrough button)
 | a | b |                    a table; first column is treated as the label
-::: note Title               a callout box
+::: note Title               a callout box (teal)
+::: warn Title               a callout box in amber, for cautions and open questions
 text
 :::
 {new}                        anywhere on a line: an amber dot marking a new line
@@ -52,11 +55,7 @@ The `synonyms:` list teaches search. Each line is `term | alias, alias, alias`. 
 
 ## Updating after a session
 
-1. In a Claude session, upload the current `guide.md`, the Zoom transcript, and `CHANGELOG.md`.
-2. Ask for the update. Claude returns a new `guide.md` with the version bumped, `{updated: DD Mon}` tags on changed sections, `{new}` on new lines, a fresh "New in Version N" table, a new `CHANGELOG.md` entry, and the generated `.docx`.
-3. Before replacing anything, copy the outgoing `guide.md` into `versions/guide-v<N>.md` and the old docx alongside it.
-4. Commit `guide.md` and `CHANGELOG.md` to the repo. GitHub Pages picks it up within a minute. Phones that already have the app fetch the new content the next time they open it online; the What's New chip shows a dot until it is read.
-5. Drop the new docx into Marnie's Google Drive.
+See `UPDATE.md`. In short: upload `guide.md`, `CHANGELOG.md`, `build-docx.js`, `index.html`, and the transcript to a Claude session, paste the prompt from the runbook, review, commit `guide.md` and `CHANGELOG.md`, share the docx.
 
 `index.html` only changes when the app itself changes. If it does, bump `CACHE` in `sw.js` so phones pick up the new version.
 
