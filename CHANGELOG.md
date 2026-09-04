@@ -2,6 +2,22 @@
 
 One entry per version, newest first. The app's What's New view reads this file. Keep the table format: two columns, what changed and where it stands now.
 
+## Version 4, 3 September 2026
+
+Folds in the 3 September session, a walk through the whole guide together. Clarifications rather than new ground.
+
+| What changed | Where it stands now |
+| --- | --- |
+| ND before EV | Outdoors, when zebras appear, twist the ND first. EV stays as the fine control. |
+| ISO limits, explained | The Minimum and Maximum ISO rows only exist in shutter priority. In ISO mode there is nothing to cap. Kept in the tables as a record. |
+| Do Not Disturb, the exact tap | To turn it off, tap the moon itself; the word Focus opens the list of modes. The padlock right above the moon is the rotation lock. |
+| Force quit, the knack | A small nudge up, a pause before letting go, then a big swipe on the app card. |
+| File Name Format is app-wide | Gear settings, under Photo, applies to every profile. Storage location is per profile. |
+| A saved value that looks wrong | Switching to another profile and back reloads the saved value. |
+| Copy to backup comes before editing | Step 4 is a plain drag or copy at the end of the shoot day. Deleting from Photos needs nothing more than a delete. |
+| iCloud sync can stall | Most likely a low phone battery pausing sync. A cable route is on the list to test. |
+| Next session: the Capture One catalog | Talk it through, then try it with a session or two on different drives. |
+
 ## Version 3, 28 August 2026
 
 Folds in the 28 August session.

@@ -1,16 +1,16 @@
 ---
 title: Moment Field Guide
 kicker: Shooting with the Moment Pro Camera
-version: 3
-updated: 28 August 2026
+version: 4
+updated: 3 September 2026
 for: Marnie Crawford Samuelson
-compiled: Compiled from working sessions, May through August 2026.
+compiled: Compiled from working sessions, May through September 2026.
 quick:
   - Photo exposure | ISO priority in Natural and ProRAW. Start at ISO 400, bring it down if the light allows.
   - Video | Shutter priority at 1/48. 4K, 24 fps, H.264, SDR.
   - EV on Natural | Ride at -0.3 to -0.7 in bright light to protect highlights.
   - Zebras | Highlights 99%, shadows off. Sparkles on water are fine, zebras on a face are not.
-  - ND filter | On outdoors for photo and video. Dial until zebras clear. Stay off the darkest extreme.
+  - ND filter | On outdoors for photo and video. When zebras appear, twist the ND first; EV is the fine control after that. Stay off the darkest extreme.
   - Autofocus | Let the camera choose. Tap the white box only for close work.
   - Storage | Photo Library for photo. Auto Connect is off, so the card is a deliberate choice.
   - White balance | Daylight outside, Auto for mixed light.
@@ -24,14 +24,15 @@ synonyms:
   - backup | chronosync, sync, mirror, copy
   - iso | exposure, sensitivity
   - shutter | ss, 1/48, shutter speed
-  - do not disturb | dnd, focus mode, notifications, banners
+  - do not disturb | dnd, focus mode, notifications, banners, moon
+  - rotation | portrait, landscape, rotation lock, padlock, orientation lock
+  - catalog | catalogue, capture one catalog, cataloging
   - sd card | card, external storage, storage
   - photo library | camera roll, photos app
   - copyright | iptc, photo mechanic, metadata, _c2026
   - session | capture one, c1, folder
   - rename | batch rename, prefix, file name
   - profile | preset, recipe, natural, proraw, 4k
-  - rotation | portrait, landscape, rotation lock, padlock
   - frozen | stuck, crash, force quit, restart, hang
   - waveform | histogram, monitor, scope
   - archive | raw captures archive, long term
@@ -43,34 +44,37 @@ synonyms:
 ::: note How to use this guide
 Part 1 has the checklists you run before shooting, and Part 4 has the end of day workflow. Those two parts carry most of the weight. Everything else is reference for when you want it, and none of it needs to be memorized. That is the whole point of writing it down.
 
-This version folds in the 28 August session. Anything that changed carries an UPDATED 28 AUG tag on its heading, and the table just below collects the changes in one place. Inside a tagged section, a small amber dot marks the exact lines that are new, so nothing is buried.
+This version folds in the 3 September session, which was a walk through the whole guide together, so the changes are small clarifications rather than new ground. Anything that changed carries an UPDATED 3 SEP tag on its heading, and the table just below collects the changes in one place. Inside a tagged section, a small amber dot marks the exact lines that are new, so nothing is buried.
 :::
 
-## New in Version 3
+## New in Version 4
 
 | What changed | Where it stands now |
 | --- | --- |
-| Auto Connect is now off | This solved the mystery of shots landing on the SD card when you had chosen the photo library. Sliding the phone into the grip was switching the storage location on its own. Nothing you did wrong. |
-| ISO starts at 400 | Saved into both Natural and ProRAW. Your reasoning, and it is the right one: easier to bring ISO down than to discover a shutter too slow to hold, especially with the ND on. |
-| File Name Format is Default, not Date | Tested side by side on both phones. Default gives the clean IMG numbers. Video ignores the setting entirely and always uses the long timecode name. |
-| A copyright step joins the workflow | Photo Mechanic writes your IPTC copyright into the exported files, then a Finder rename tags them. This is now the last thing that happens before anything goes out. Part 4 has the sequence. |
-| Autofocus: let the camera choose | You tried it at Hyannis and everything came back sharp. The lens is wide with deep depth of field, so tapping the white box mostly costs you the moment. |
-| Your drive setup checks out | Walked through all three together. Sessions Primary, Sessions Backup, and the Raw Captures Archive are all set up correctly. |
+| ND before EV | Outdoors, when zebras appear, twist the ND first. It is quicker and more intuitive than tapping EV, and EV stays as the fine control. |
+| ISO limits, explained | The Minimum and Maximum ISO rows only exist in shutter priority. In ISO mode you set the value yourself, so there is nothing to cap. The rows stay in the tables as a record. |
+| Do Not Disturb, the exact tap | To turn it off, tap the moon itself. Tapping the word Focus opens the list of modes instead. The padlock right above the moon is the rotation lock. |
+| Force quit, the knack | A small nudge up, a pause before you let go, then a big swipe on the app card. |
+| File Name Format is app-wide | It lives in the gear settings under Photo and applies to every profile. Storage location, by contrast, is saved per profile. |
+| A saved value that looks wrong | Marnie's ISO showed 125 after tapping around the shooting screen. Switching to another profile and back reloaded the saved 400. |
+| Copy to backup comes before editing | Step 4 is a plain drag or copy, done at the end of the shoot day so the card and phone can be cleared for tomorrow. Deleting from Photos needs nothing more than a delete. |
+| iCloud sync can stall | The shots that never arrived on the laptop were most likely a low phone battery pausing sync. A cable route is on the list to test. |
+| Next session: the Capture One catalog | Talk it through, then try it with a session or two, ideally on different drives. |
 
 # Part 1. Before you shoot
 
 *Two checklists, one for photo and one for video. Run the one that matches. After a few outings this takes under a minute, and it means nothing has to be decided in the middle of a scene.*
 
-## The photo checklist {updated: 28 Aug}
+## The photo checklist {updated: 3 Sep}
 
-- [ ] **Do Not Disturb is on** *Swipe down from the top right corner, tap Focus. A moon appears by the clock. It turns off the same way when you are done.*
+- [ ] **Do Not Disturb is on** *Swipe down from the top right corner, tap Focus. A moon appears by the clock. To turn it off, tap the moon itself, not the word Focus.* {new}
 - [ ] **The right profile is loaded** *Natural for everyday. ProRAW for contrasty light or anything you might print. The text along the top bar confirms which one you are in.*
-- [ ] **Storage says Photo Library, not SD card** {new} *Look at the small icon on the shooting screen. If it shows the card symbol instead of your last image, the location has switched. With Auto Connect now off this should stay put, but it is worth a glance.*
-- [ ] **You are in ISO mode, starting around ISO 400** {new} *Pick the ISO, let the app find the shutter. The shutter reading sits just above the shutter button, labelled SS. Bring the ISO down if the light allows.*
-- [ ] **The ND is mounted if you are outdoors** *Dial it until the zebras clear. No need to go anywhere near its darkest extreme.*
+- [ ] **Storage says Photo Library, not SD card** *Look at the small icon on the shooting screen. If it shows the card symbol instead of your last image, the location has switched. With Auto Connect now off this should stay put, but it is worth a glance.*
+- [ ] **You are in ISO mode, starting around ISO 400** *Pick the ISO, let the app find the shutter. The shutter reading sits just above the shutter button, labelled SS. Bring the ISO down if the light allows.*
+- [ ] **The ND is mounted if you are outdoors** *Dial it until the zebras clear. When the light changes mid-scene, the ND is the first thing to reach for, before EV. No need to go anywhere near its darkest extreme.* {new}
 - [ ] **EV where you want it** *Zero to start. On Natural, riding at -0.3 to -0.7 protects the highlights, and the raw file holds the shadows.*
 - [ ] **White balance is set** *Daylight outside. Auto for genuinely mixed light.*
-- [ ] **Autofocus is on, and you can leave it alone** {new} *The lens is wide and the depth of field is deep. Tapping the white box is optional, and mostly worth skipping so you keep both hands on the grip.*
+- [ ] **Autofocus is on, and you can leave it alone** *The lens is wide and the depth of field is deep. Tapping the white box is optional, and mostly worth skipping so you keep both hands on the grip.*
 - [ ] **Exposure looks right, no clipping** *The things to watch: a spike against the right edge of the histogram, or a solid white line across the top of the waveform.*
 - [ ] **Quick Actions are swept** *Hand icon. Level on, Monitors on, Clipping on at Highlights 99%, Flash off, Timer off, Grid to taste.*
 - [ ] **Lenses are clean** *The edges where glass meets housing collect the most.*
@@ -86,7 +90,7 @@ The app hides a lot behind long presses and nested menus, and mid-scene there is
 - [ ] **The 4K profile is loaded** *H.264, 4K, SDR, 24 fps.*
 - [ ] **Shutter is 1/48** *Double the frame rate, the 180 degree rule. This is what gives motion its natural look, so video stays in shutter mode even though photo has moved to ISO mode.*
 - [ ] **ND is on and dialed in** *At 1/48 in daylight the ND is doing the exposure work. Rotate until the zebras clear, and keep clear of the darkest extreme.*
-- [ ] **Storage says what you expect** {new} *Same glance as the photo list. Video is usually happier on the SD card given the file sizes, but make it a choice rather than a surprise.*
+- [ ] **Storage says what you expect** *Same glance as the photo list. Video is usually happier on the SD card given the file sizes, but make it a choice rather than a surprise.*
 - [ ] **Stabilization is on**
 - [ ] **Audio source is set** *Quick Actions, Monitors on, tap the audio meters. Source: Built-in, then Back microphone, Stereo.*
 - [ ] **White balance is set** *Daylight outside. Lock Auto White Balance on Record is already on, so Auto will not drift mid-clip.*
@@ -138,7 +142,7 @@ Settings live in four places, and knowing which one you are in makes the app muc
 A dedicated low light profile is still on the list. Until then: ProRAW on the 1x lens is the stronger choice in dim light, since Fusion stacks exposures in a way Natural cannot.
 :::
 
-## What is in each profile {updated: 28 Aug}
+## What is in each profile {updated: 3 Sep}
 
 *Across all three: auto-save is off, and clipping is on at Highlights 99%.*
 
@@ -151,9 +155,9 @@ A dedicated low light profile is still on the list. Until then: ProRAW on the 1x
 | Dynamic range | Light, or Off. Strong pushes the image further into computational processing than you want here. |
 | Colour space | SDR |
 | Resolution | 12 MP, 4:3 |
-| ISO | 400 as the starting point {new} |
-| ISO limits | Minimum None, Maximum 1600 (This is a Shutter priority setting). |
-| Storage | Photo Library {new} |
+| ISO | 400 as the starting point |
+| ISO limits | Minimum None, Maximum 1600. Only visible in shutter priority (tap ISO there). In ISO mode you set the value yourself, so there is nothing to cap. Kept here as a record. {new} |
+| Storage | Photo Library |
 | Clipping | Highlights, 99% |
 
 - The JPEG and the raw save together as one item. In the Moment preview, the small red badge at the bottom flips between them.
@@ -166,11 +170,11 @@ A dedicated low light profile is still on the list. Until then: ProRAW on the 1x
 | Fusion | Allowed. Disabling it drops resolution to 12 MP, so it stays on. |
 | Colour space | HDR. 48 MP requires it, and the resolution is the reason to be here. |
 | Resolution | 48 MP. Treat it as a request; the hardware sometimes delivers around 20 MP, and the stock camera behaves the same way. |
-| JPEG companion | Included. Costs little, handy for a quick send. |
+| JPEG companion | Included. Costs little, handy for a quick send. ProRAW is already a raw file, so there is no Keep RAW toggle here; this is the sidecar. {new} |
 | Aspect ratio | 4:3 |
-| ISO | 400 as the starting point {new} |
-| ISO limits | Minimum None, Maximum 1600 (This is a Shutter priority setting). |
-| Storage | Photo Library {new} |
+| ISO | 400 as the starting point |
+| ISO limits | Minimum None, Maximum 1600. Same as Natural: a shutter priority setting, kept as a record. {new} |
+| Storage | Photo Library |
 | Clipping | Highlights, 99% |
 
 ### 4K Video
@@ -184,7 +188,7 @@ A dedicated low light profile is still on the list. Until then: ProRAW on the 1x
 | Audio | Built-in, Back microphone, Stereo |
 | Clipping | Highlights, 99% |
 
-## Changing a setting and saving it {updated: 28 Aug}
+## Changing a setting and saving it {updated: 3 Sep}
 
 Two different things live under the profile tab, and this is the most useful distinction in the whole app.
 
@@ -206,15 +210,20 @@ That just means the profile already matches your current settings. The button on
 This is very likely what happened at Hyannis. You raised the ISO to 400 mid-shoot because the shutter was too slow, but did not save it, and some files came back at ISO 80. Auto-save is deliberately off, so any change you make in the field lives only until the profile is loaded again. Then the saved value quietly takes over. Both profiles are now saved at 400, which removes the problem: your starting point is high enough that any adjustment you make will be downward, and a lost adjustment leaves you no worse off than where you began.
 :::
 
+::: warn If a value on the shooting screen looks wrong
+Marnie's Natural profile showed ISO 125 after tapping around the ISO control, with 400 saved. Switching to another profile and back reloaded the saved 400. Any time a number looks off, that switch is the quick check: the profile always comes back with what was saved. {new}
+:::
+
 ### Edit Profile is for the rest
 
 Auto-save, storage location, and viewfinder items live inside Edit Profile, which is also where you look to confirm what a profile currently holds. Close it with the X in the black panel at the top.
 
 - Auto-save stays off, per profile, so field tweaks never quietly rewrite your saved starting points.
+- Storage location is saved per profile. File Name Format is not: it lives in the gear settings under Photo and applies everywhere. {new}
 - Photo and video profiles are separate by design. Settings do not carry across.
 - Profiles are not available while the phone is locked. Unlock first, then load.
 
-## Where your shots are being saved {updated: 28 Aug}
+## Where your shots are being saved
 
 This one caused real trouble on the Hyannis shoot, and it turned out not to be operator error at all.
 
@@ -238,23 +247,23 @@ With Auto Connect off, nothing stops you using the card, it just becomes a delib
 
 # Part 3. In the field
 
-## Exposure: ISO priority for photo {updated: 28 Aug}
+## Exposure: ISO priority for photo {updated: 3 Sep}
 
 The reason for this mode. With an aperture this wide, outdoor shutter speeds land in the thousands, where choosing between 1/4000 and 1/8000 means nothing. So set the ISO and let the app calculate the shutter.
 
 | | The setting |
 | --- | --- |
 | Mode | ISO, in both Natural and ProRAW. |
-| Starting ISO | 400, saved into both profiles. {new} |
-| Why 400 rather than lower | Your own reasoning from the Hyannis shoot, and it is sound: coming down from a higher ISO is easy, while discovering mid-shoot that the shutter is too slow to hand hold costs you frames. With the ND on, a low ISO drops the shutter further than you want. {new} |
+| Starting ISO | 400, saved into both profiles. |
+| Why 400 rather than lower | Your own reasoning from the Hyannis shoot, and it is sound: coming down from a higher ISO is easy, while discovering mid-shoot that the shutter is too slow to hand hold costs you frames. With the ND on, a low ISO drops the shutter further than you want. |
 | Where the shutter reads | Just above the shutter button, labelled SS. In ISO mode that number is feedback rather than a control. |
-| Your exposure lever | EV, plus the ND outdoors. If the frame is hot, nudge EV down or dial the ND, and let the shutter fall where it falls. |
+| Your exposure lever | Outdoors, the ND first. When the sun comes out and the zebras appear, a twist of the ring is quicker than tapping the screen, the same reflex as on a Sony. EV is the fine control after that. Let the shutter fall where it falls. {new} |
 
 ::: note The one time shutter mode comes back for photo
 Deliberate motion blur. To let a crowd smear, switch to shutter mode, drag down to something like 1/15, and use the ND to hold the exposure. That is the one case where the shutter number is a creative choice, and it is a lovely effect worth playing with.
 :::
 
-## Focus {updated: 28 Aug}
+## Focus
 
 Worth trusting the camera here. On the Hyannis shoot you stopped tapping the white box and let the camera choose, and everything came back sharp.
 
@@ -262,7 +271,7 @@ Worth trusting the camera here. On the Hyannis shoot you stopped tapping the whi
 - Tapping means taking a hand off the grip, and by the time you have tapped, the subject has usually moved.
 - The exception is close work. If you are near your subject, depth of field shrinks and it is worth tapping to place focus deliberately.
 
-## Reading the histogram, waveform, and zebras
+## Reading the histogram, waveform, and zebras {updated: 3 Sep}
 
 Tap the histogram to switch to the waveform. They answer different questions.
 
@@ -272,54 +281,58 @@ Tap the histogram to switch to the waveform. They answer different questions.
 | The warning sign | A spike against the right edge. | A solid white line along the top. |
 | Looking good | Distribution inside the frame, not pinned to either edge. | Mostly in the middle band. |
 
+- Which to use: the histogram for the quick in-the-moment check. If it is not piled against either edge, you are safe enough to shoot. The waveform earns its place when you can do something about one part of the frame, such as a window that is too bright. {new}
 - Zebras live in Quick Actions under Clipping, in both photo and video. Press and hold anywhere on the Clipping square to change the threshold: Highlights at 99%, shadows off.
 - At 99% the zebras only fire at the true limit. A few sparkles on water or a specular highlight are fine to leave. Zebras spreading across a face or a sky you want texture in are the cue to pull back.
 - Both displays are small and unlabelled. That is the app, not you.
 
-## The variable ND filter
+## The variable ND filter {updated: 3 Sep}
 
 The aperture is fixed, so the ND is your only way to cut light without touching shutter or ISO. Outdoors it goes on for stills as well as video.
 
 - For video at 1/48, the ND does the exposure work. Dial it until the zebras clear.
 - For photo in ISO mode, it keeps the whole system in a comfortable range on bright days, and it is what makes slow-shutter motion blur possible in daylight.
+- It is also the first move when the light changes. Zebras appear, twist the ring. EV is the finer adjustment once the ND has done the heavy lifting. {new}
 
 ::: warn Keep away from the darkest extreme
 Your test confirmed it: cranked to maximum and panned across the horizon, artifacts appear. It did not take much backing off for them to clear, so the working range is everything short of the last stretch of the ring. At moderate density the artifact is subtler on the monitor, so when you have been near the extreme, ease off a touch more than looks necessary.
 :::
 
-## Contrasty light: ProRAW first
+## Contrasty light: ProRAW first {updated: 3 Sep}
 
 Confirmed side by side: pointed at a bright sky, ProRAW holds the highlights noticeably better than Natural, because Fusion is stacking exposures while Natural works from a single frame.
 
 | Situation | The move |
 | --- | --- |
 | Contrasty light, indoor or outdoor | ProRAW with HDR. The default for high contrast, not just for shots headed to print. |
-| Natural, when you want that look | Ride EV at -0.3 to -0.7. The sensor holds shadows far better than highlights, and the raw file is there for lifting them later. |
+| Natural, when you want that look | Ride EV at -0.3 to -0.7. The sensor holds shadows far better than highlights, and the raw file is there for lifting them later. So far every shoot has been ProRAW, so Natural's look is still an unknown; worth a side by side of the same scene to settle it. {new} |
 | Video | 4K profile, ND dialed in, watch the zebras. |
 
 ::: warn Still unsettled: Light versus Strong
 Natural's dynamic range control behaved differently on the two phones: Strong reduced clipping on one and changed nothing visible on the other. Light remains the setting for now, and this is worth a more controlled look sometime.
 :::
 
-## Blocking interruptions
+## Blocking interruptions {updated: 3 Sep}
 
 ### Messages
 
 Swipe down from the top right corner, tap the moon labelled Focus. The moon by the clock confirms it, and reminds you to turn it off after. Messages still arrive, they just stop dropping banners over your viewfinder.
 
+To turn it off, tap the moon itself. Tapping the word Focus next to it opens the list of Focus modes instead, which is where the confusion came from. {new}
+
 ### The camera roll stuck in vertical
 
-If the camera roll views only in portrait while the viewfinder rotates fine, that is the iPhone rotation lock. Moment's viewfinder overrides it, the roll does not. Swipe down from the top right and tap the red padlock icon to unlock rotation.
+If the camera roll views only in portrait while the viewfinder rotates fine, that is the iPhone rotation lock. Moment's viewfinder overrides it, the roll does not. Swipe down from the top right and tap the padlock, which sits right above the moon. It should normally be off. {new}
 
 ### Sharing several images at once
 
 Moment's camera roll is a window onto the same photo library, and it does not allow selecting several images to AirDrop or send. For that, switch to the Photos app, select, and share from there.
 
-## When something goes wrong
+## When something goes wrong {updated: 3 Sep}
 
 | | How | Use when |
 | --- | --- | --- |
-| Force quit the app | Swipe up from the bottom about a third of the way and hold, then swipe the app card up and away. | First thing to try. Fast and harmless. |
+| Force quit the app | Swipe up from the bottom a little way and pause before you let go, then swipe the app card up and away. It is a small nudge with a pause at the end, then a big swipe. {new} | First thing to try. Fast and harmless. |
 | Restart the phone | Swipe down from the top right, press and hold the power symbol, slide to power off. Or hold the side button and either volume button until the slider appears. | An app is stuck and force quitting did not clear it. This is what resolved the stuck-recording episode. |
 | Force restart | Press and release volume up, press and release volume down, then hold the side button until the Apple logo appears. | The phone itself is frozen. |
 
@@ -339,16 +352,16 @@ Everything from a shoot day, photo and video, from the camera roll and from the 
 4. The full date and event prefix on every folder means any folder that gets moved or copied still says exactly what it is.
 5. Doing this before the shoot means the folders are waiting for you at the end of a long day.
 
-## End of day, step by step
+## End of day, step by step {updated: 3 Sep}
 
-1. On the laptop, open Photos and let the day finish syncing from iCloud. Plug the laptop in if syncing pauses. Then select the day's shots and use File, Export, Export Unmodified Originals, into the camera roll capture subfolder.
+1. On the laptop, open Photos and let the day finish syncing from iCloud. Plug the laptop in if syncing pauses, and check the phone's battery too, since a low battery pauses it as well. Then select the day's shots and use File, Export, Export Unmodified Originals, into the camera roll capture subfolder. {new}
 2. Copy the SD card's contents into the SD card subfolder. Everything together, photos and video, then compare sizes with the card to confirm the copy is complete.
 3. In Capture One, batch rename everything, video included: control click, Batch Rename, find and replace the prefix with the date and event, 20260813_EVENT_.
-4. Copy or drag (no ChronoSync) the whole session folder to the backup drive. Your originals now exist in two places.
-5. Now it is safe to clear the phone: delete the day's images in Photos on the laptop, which also removes them from iCloud and the phone in one move.
+4. Copy or drag (no ChronoSync) the whole session folder to the backup drive. Your originals now exist in two places. This happens before any editing; it is only about getting the originals safe so the card and phone can be cleared for tomorrow. {new}
+5. Now it is safe to clear the phone: delete the day's images in Photos on the laptop, which also removes them from iCloud and the phone in one move. Select, delete, done. There is no trash to empty. {new}
 6. Edit in Capture One as usual: rate, tone, and export with your recipe into the session Output folder.
-7. Run the copyright pass in Photo Mechanic, then the rename. The next section covers this. {new}
-8. Copy the raw captures and the finished copyrighted folder to the archive drive, under a parent folder named for the date and event. {new}
+7. Run the copyright pass in Photo Mechanic, then the rename. The next section covers this.
+8. Copy the raw captures and the finished copyrighted folder to the archive drive, under a parent folder named for the date and event.
 9. Run the ChronoSync task, iPhone Capture One Sessions Primary to Backup, so your edits and exports land on the backup drive too.
 
 ::: warn One small check during the rename
@@ -359,7 +372,7 @@ The prefix to replace can vary. Photos come in as IMG. Video names use the long 
 Two copies before anything gets deleted. Everything else in the sequence has some give, but step 4 always comes before step 5.
 :::
 
-## Copyright, before anything goes out {updated: 28 Aug}
+## Copyright, before anything goes out {updated: 3 Sep}
 
 Capture One does not reliably embed your copyright on export. It can look as though it is there when it is not. Photo Mechanic does it properly, so it becomes the last step before any file leaves your hands.
 
@@ -387,7 +400,7 @@ So that a copyrighted file announces itself even after it has been moved or pull
 1. Still in the session Output folder, in Finder, select all the files you just processed.
 2. Right click any one of them and choose Rename.
 3. In the format dropdown at the top left, change it from Format to **Add Text**.
-4. Type your tag, with a leading underscore: _C2026. Leave the position set to **after the name**, which is the default.
+4. Type your tag, with a leading underscore: _C2026. Leave the position set to **after the name**, which is the default. Finder shows a preview of the new name at the bottom of the panel before you commit. {new}
 5. Click **Rename**. Command Z undoes it if something looks wrong.
 6. Rename the enclosing folder by hand to note the copyright as well.
 
@@ -408,10 +421,10 @@ The tag should only ever appear on files that genuinely carry the copyright, so 
 ### The ChronoSync task
 
 - Named iPhone Capture One Sessions Primary to Backup. Left side: the primary drive with Admin Access. Right side: the backup drive with Admin Access. Backup left to right. Synchronize deletions; archive deletions.
-- Run it after an edit session so ratings, toning, and exports flow across. The first copy of a fresh session can be a simple Finder drag.
+- Run it after an edit session so ratings, toning, and exports flow across. The first copy of a fresh session is the Finder drag in step 4 of the end of day sequence, not ChronoSync. ChronoSync is smart about what has changed: it only moves what is new or different, and leaves the backup identical to the primary.
 - If it ever throws errors on individual files, check whether the target drive is full before suspecting anything worse. ChronoSync's own archive of old versions is usually what fills it. From the top menu choose Actions, Archive, Clean Up, and choose how much of the archive to delete.
 
-## The archive drive, separately {updated: 28 Aug}
+## The archive drive, separately {updated: 3 Sep}
 
 Archiving stays out of the end of day rush. It can happen at the end of a project, or whenever it suits.
 
@@ -426,20 +439,20 @@ Archiving stays out of the end of day rush. It can happen at the end of a projec
 The sessions drive holds the work. The archive holds something different: files a person could open in twenty years without owning Capture One. That is also the argument for eventually putting a large TIFF of your finished images there, since a TIFF will still open long after any particular application has come and gone. It also means your original captures exist in three places once a shoot is archived: the session, the session backup, and here.
 :::
 
-- Exhibition prints and finals, the ones Bob Korn makes, belong on the archive drive in their own area, apart from working sessions.
+- Exhibition prints and finals, the ones Bob Korn makes, belong on the archive drive in their own area, apart from working sessions. Right now the final exhibit files are stored separately, one place per project (Outer Cape, for example), and whether that stays the arrangement is still open. The argument for it: all the finals of a project in one place, rather than hunting image by image through sessions. {new}
 - Copyright registration for finals, and how the Copyright Office's naming rules link back to your own names, is still on the list to work out.
 
 # Part 5. Reference: set once, then forget
 
 *Worth a spot check after a major Moment update, and otherwise fine to leave alone.*
 
-## Moment settings {updated: 28 Aug}
+## Moment settings {updated: 3 Sep}
 
 *Gear icon, lower left of the shooting screen.*
 
 | Setting | Set to | Why |
 | --- | --- | --- |
-| File Name Format | Default {new} | Gives the familiar incrementing IMG numbers. The Date option produces a long timecode string instead, which is what you had been fighting. Tested both ways in the session. Numbers skip when shooting RAW plus JPEG, two files per frame, which is normal. {new} |
+| File Name Format | Default | Under Photo in the gear settings. App-wide, not per profile. {new} Gives the familiar incrementing IMG numbers. The Date option produces a long timecode string instead, which is what you had been fighting. Tested both ways in the session. Numbers skip when shooting RAW plus JPEG, two files per frame, which is normal. |
 | Combine RAW and Processed | Off | Keeps the raw and JPEG as separate files. |
 | Preserve Settings | On | Mostly moot, since a loaded profile wins anyway. Harmless. |
 | Return to Camera on Launch | On | Opens straight into the viewfinder. |
@@ -450,7 +463,7 @@ The sessions drive holds the work. The archive holds something different: files 
 | Left-Handed Interface | Leave as is | No visible difference when toggled. |
 | Apply De-Squeeze When Saving | Ignore | Anamorphic lenses only. |
 | Auto-save (per profile, in Edit Profile) | Off | Keeps field tweaks from rewriting your profiles. |
-| Auto Connect (hardware icon, Location) | Off {new} | The one that was switching your storage to the SD card on its own whenever the phone went into the grip. {new} |
+| Auto Connect (hardware icon, Location) | Off | The one that was switching your storage to the SD card on its own whenever the phone went into the grip. |
 
 ::: warn Video ignores the file name setting
 Whatever you choose, video clips come out with the long timecode name. Nothing to fix, just something to know when you are setting up the batch rename in Capture One.
@@ -497,16 +510,20 @@ The ProRAW section in iPhone Settings, Camera, Formats only affects Apple's stoc
 
 HDR looks right on your iPhone and can read differently on someone else's screen. SDR is safer for handoff. But 48 MP requires HDR, and resolution is the reason to reach for ProRAW, so ProRAW stays HDR and Natural, where most shooting happens, stays SDR.
 
-## Open questions and next sessions {updated: 28 Aug}
+## Open questions and next sessions {updated: 3 Sep}
 
 ### Next session
 
-- Video into Premiere Pro: import, build a sequence, export something small enough to post. Two routes worth seeing: the full Premiere path, and Media Encoder on its own for when a single clip just needs to be made smaller, which skips Premiere entirely.
+- The Capture One catalog. Talk it through, then try it with a session or two, ideally on different drives, to see what happens when a drive is disconnected. The catalog is a small file that lives on the laptop and points at the sessions on the drives; nothing moves. The open worry is remembering to always work from the catalog rather than opening a session directly. {new}
 
 ### Queued
 
-- A Capture One catalog above your sessions, so everything becomes searchable in one place. Written up separately. {new}
-- A second monitor for the 13 inch laptop. Two directions: the Apple Studio Display at around $1,300, where the 5K resolution makes text noticeably crisper, or an inexpensive 4K panel around $200 to $300, lighter and easier to travel with and no great loss if it gets knocked about. {new}
+- Video into Premiere Pro: import, build a sequence, export something small enough to post. Two routes worth seeing: the full Premiere path, and Media Encoder on its own for when a single clip just needs to be made smaller, which skips Premiere entirely.
+- A cable route for getting the day's shots off the phone when iCloud sync stalls: plug the phone into the laptop and import directly. Shane to test. {new}
+- Natural versus ProRAW, side by side on the same scene, so Natural's look is a known quantity. {new}
+- Where final exhibit files live, and how copyright registration naming will link back to your own names. Both are cataloging problems at heart, and there may be tools that help once the catalog exists. {new}
+- A second monitor for the 13 inch laptop. Two directions: the Apple Studio Display at around $1,300, where the 5K resolution makes text noticeably crisper, or an inexpensive 4K panel around $200 to $300, lighter and easier to travel with and no great loss if it gets knocked about. Shane to send one more recommendation. {new}
+- A printed copy of the guide for the camera bag. {new}
 - A low light profile.
 - Voice captions in the field: wearing the Zoom F2 and speaking names and details as you shoot, then letting transcription sort it afterward.
 - Blurring faces for privacy in photo and video.
