@@ -527,7 +527,7 @@ function viewSection(slug, hl, params={}){
   const p=s.part; const list=G.sections.filter(x=>x.part.num>0); const i=list.indexOf(s);
   const prev=i>0?list[i-1]:null, next=i<list.length-1?list[i+1]:null;
   const hasCheck=s.blocks.some(b=>b.type==='check');
-  const back = params.from==='search' ? '#search?q='+encodeURIComponent(params.q||'') : '#home';
+  const back = params.from==='search' ? '#search?q='+encodeURIComponent(params.q||'') : '#home?at='+s.slug;
   let h=bar(p.num?`Part ${p.num}`:'', p.num?p.title:'', {back});
   h+=`<main><h1 class="sec" style="margin-top:20px">${esc(s.title)}</h1>`;
   if(s.updated) h+=`<span class="upd">Updated ${esc(s.updated)}</span><br>`;
@@ -683,6 +683,7 @@ async function render(){
   if(v==='search'){ const i=document.getElementById('q'); i.addEventListener('input',e=>{doSearch(e.target.value); history.replaceState(null,'','#search?q='+encodeURIComponent(e.target.value));}); doSearch(i.value); if(!i.value) setTimeout(()=>i.focus(),50); }
   else if(v==='walk'){ requestWake(); }
   if(v==='s' && params.hl!=null){ const el=document.querySelector(`[data-b="${params.hl}"]`); if(el){ el.classList.add('hl'); setTimeout(()=>el.scrollIntoView({block:'center',behavior:'smooth'}),60); setTimeout(()=>el.classList.remove('hl'),3500); } }
+  else if(v==='home' && params.at){ const el=document.querySelector(`.parts a[href="#s/${params.at}"]`); if(el){ el.scrollIntoView({block:'center'}); el.classList.add('hl'); setTimeout(()=>el.classList.remove('hl'),1500); } else window.scrollTo(0,0); }
   else window.scrollTo(0,0);
 }
 async function requestWake(){ try{ if('wakeLock' in navigator){ wakeLock=await navigator.wakeLock.request('screen'); const a=document.getElementById('awake'); if(a) a.textContent='Screen will stay awake while you work through the steps'; } }catch(e){} }
