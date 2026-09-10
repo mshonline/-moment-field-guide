@@ -402,7 +402,7 @@ const store={
   set(k,v){try{localStorage.setItem('mfg:'+k,JSON.stringify(v))}catch(e){}}
 };
 const today=()=>{const d=new Date();return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0')};
-let G=null, IDX=null, CL=null, loadedFrom='', wakeLock=null;
+let G=null, IDX=null, CL=null, SESS=null, loadedFrom='', wakeLock=null; const sessCache={};
 const app=document.getElementById('app');
 
 function ticks(){ let t=store.get('ticks',{date:today(),on:{}}); if(t.date!==today()){t={date:today(),on:{}};store.set('ticks',t)} return t; }
@@ -451,7 +451,7 @@ function renderBlocks(blocks, sec, ctx={}){
   let h=''; let bi=0;
   const olIdx = {n:0};
   for(const b of blocks){
-    if(b.type==='p'){ const x=inline(b.text); const lead=/^\*[^*]+\*$/.test(b.text.trim()); h+=`<p data-b="${ctx.counter?ctx.counter():''}" class="${lead?'lead':''}">${x.html}${dot(x.isNew)}</p>`; }
+    if(b.type==='p'){ const x=inline(b.text); const lead=/^\*[^*]+\*$/.test(b.text.replace(/\s*\{new\}\s*/g,'').trim()); h+=`<p data-b="${ctx.counter?ctx.counter():''}" class="${lead?'lead':''}">${x.html}${dot(x.isNew)}</p>`; }
     else if(b.type==='h3'){ const x=inline(b.text); h+=`<h3 data-b="${ctx.counter?ctx.counter():''}">${x.html}${dot(x.isNew)}</h3>`; }
     else if(b.type==='ul'){ h+='<ul class="b">'+b.items.map(t=>{const x=inline(t);return `<li data-b="${ctx.counter?ctx.counter():''}">${x.html}${dot(x.isNew)}</li>`}).join('')+'</ul>'; }
     else if(b.type==='ol'){
@@ -512,7 +512,8 @@ function viewHome(){
   if(pl) h+=`<a class="big alt" href="#s/${pl.slug}"><span class="ic">${I.bag}</span><span>Before you leave the house<small>Session, batteries, card, bag</small></span>${prog(pl)}</a>`;
   h+=`<h2 class="hd">After the shoot</h2>`;
   if(pe){ const ol=pe.blocks.findIndex(b=>b.type==='ol'); h+=`<a class="big" href="#walk/${pe.slug}/0"><span class="ic">${I.play}</span><span>End of day, step by step<small>${ol>=0?pe.blocks[ol].items.length:''} steps, screen stays awake</small></span></a>`; }
-  h+=`<div class="row"><a class="chip" href="#quick">Quick reference</a><a class="chip" href="#new">What's new${isNew?'<span class="n"></span>':''}</a><a class="chip" href="#notes">Notes for Shane</a></div>`;
+  h+=`<div class="row"><a class="chip" href="#quick">Quick reference</a><a class="chip" href="#new">What's new${isNew?'<span class="n"></span>':''}</a></div>`;
+  h+=`<div class="row"><a class="chip" href="#sessions">Session notes</a><a class="chip" href="#notes">Notes for Shane</a></div>`;
   h+=`<h2 class="hd">Everything in the guide</h2><ul class="parts">`;
   for(const p of G.parts){ if(p.num===0) continue;
     h+=`<li class="part"><p class="pt">Part ${p.num}. ${esc(p.title)}</p><ul>`+p.sections.map(s=>`<li><a href="#s/${s.slug}">${esc(s.title)}${s.updated?'<span class="dot"></span>':''}</a></li>`).join('')+`</ul></li>`;
@@ -622,6 +623,30 @@ function viewSettings(){
 function setPref(k,v){store.set(k,v);applyPrefs();render()}
 async function checkUpdates(){ toast('Checking'); try{ if('serviceWorker' in navigator){const r=await navigator.serviceWorker.getRegistration(); if(r) await r.update();} await loadData(true); render(); toast('Guide is version '+G.meta.version); }catch(e){ toast('Could not reach the server'); } }
 
+function viewSessions(){
+  let h=bar('Session notes','',{});
+  h+=`<main><p class="crumb" style="margin-top:16px">What each coaching session covered and decided. Newest first.</p>`;
+  if(!SESS) h+=`<p class="empty">Session notes need a connection the first time.</p>`;
+  else if(!SESS.length) h+=`<p class="empty">No session notes yet.</p>`;
+  else h+=`<ul class="parts"><li class="part"><ul>`+SESS.map(x=>`<li><a href="#session/${encodeURIComponent(x.file.replace(/\.md$/,''))}"><span><b>${esc(x.title)}</b>${x.summary?`<br><span style="color:var(--grey);font-size:.9rem">${esc(x.summary)}</span>`:''}</span></a></li>`).join('')+`</ul></li></ul>`;
+  h+=`</main>`; return h;
+}
+function viewSession(id){
+  const d=sessCache[id];
+  let h=bar('Session notes','',{back:'#sessions'});
+  if(!d){ loadSession(id); return h+`<main><div class="load">Loading</div></main>`; }
+  h+=`<main><h1 class="sec" style="margin-top:18px">${esc(d.meta.title||id)}</h1>`;
+  if(d.meta.compiled) h+=`<p class="lead">${esc(d.meta.compiled)}</p>`;
+  h+=renderBlocks(d.parts[0].intro,null,{});
+  for(const s of d.parts[0].sections){ h+=`<h2 class="hd" style="font-size:1.05rem;color:var(--ink)">${esc(s.title)}</h2>`+renderBlocks(s.blocks,null,{}); }
+  for(const p of d.parts){ if(p.num===0) continue; h+=`<h1 class="sec" style="font-size:1.3rem;margin-top:30px;color:var(--teal-mid)">${esc(p.title)}</h1>`+renderBlocks(p.intro,null,{}); for(const s of p.sections){ h+=`<h3>${esc(s.title)}</h3>`+renderBlocks(s.blocks,null,{}); } }
+  h+=`</main>`; return h;
+}
+async function loadSession(id){
+  try{ const t=await fetchText('sessions/'+id+'.md'); store.set('sess:'+id,t); sessCache[id]=parseGuide(t); }
+  catch(e){ const t=store.get('sess:'+id,null); if(t) sessCache[id]=parseGuide(t); else { app.innerHTML=bar('Session notes','',{back:'#sessions'})+'<main><p class="empty">Could not load these notes. Try again when you have a connection.</p></main>'; return; } }
+  if(route().seg[0]==='session' && decodeURIComponent(route().seg[1])===id) render();
+}
 function viewAbout(){
   const p0=G.parts[0]; const m=G.meta;
   let h=bar('About this guide','',{});
@@ -651,6 +676,8 @@ async function render(){
   else if(v==='notes') h=viewNotes();
   else if(v==='settings') h=viewSettings();
   else if(v==='about') h=viewAbout();
+  else if(v==='sessions') h=viewSessions();
+  else if(v==='session') h=viewSession(decodeURIComponent(seg[1]||''));
   else h=viewHome();
   app.innerHTML=h;
   if(v==='search'){ const i=document.getElementById('q'); i.addEventListener('input',e=>{doSearch(e.target.value); history.replaceState(null,'','#search?q='+encodeURIComponent(e.target.value));}); doSearch(i.value); if(!i.value) setTimeout(()=>i.focus(),50); }
@@ -677,6 +704,8 @@ async function loadData(force){
   G=parseGuide(text); IDX=buildIndex(G);
   try{ const c=await fetchText(CONFIG.changelogFile, force); store.set('clCache',c); CL=parseChangelog(c); }
   catch(e){ const c=store.get('clCache',null); CL=c?parseChangelog(c):[]; }
+  try{ const j=await fetchText('sessions/index.json', force); store.set('sessIndex',j); SESS=JSON.parse(j); }
+  catch(e){ const j=store.get('sessIndex',null); SESS=j?JSON.parse(j):null; }
   if(store.get('seenVersion',null)===null) store.set('seenVersion',G.meta.version);
   document.title=G.meta.title||'Field Guide';
 }

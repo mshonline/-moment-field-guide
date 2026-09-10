@@ -1,9 +1,9 @@
 // Bump CACHE whenever index.html, manifest.json, or the icons change.
 // guide.md and CHANGELOG.md are always fetched fresh when online, so a content
 // update never needs a cache bump.
-const CACHE = 'mfg-v3';
+const CACHE = 'mfg-v4';
 const SHELL = ['./', './index.html', './manifest.json', './guide.md', './CHANGELOG.md',
-  './icons/icon-180.png', './icons/icon-192.png', './icons/icon-512.png'];
+  './sessions/index.json', './icons/icon-180.png', './icons/icon-192.png', './icons/icon-512.png'];
 
 self.addEventListener('install', e => {
   e.waitUntil(caches.open(CACHE).then(c => c.addAll(SHELL)).then(() => self.skipWaiting()));

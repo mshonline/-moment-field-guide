@@ -5,6 +5,7 @@
   the V3 house styling (Arial, teal and amber, Letter, 0.75in margins).
 
   Usage:  node build-docx.js [guide.md] [output.docx]
+          node build-docx.js sessions/2026-09-10.md   (front matter type: notes -> single flowing doc, no contents page)
   Defaults: guide.md in this folder, output Moment_Field_Guide_V<version>.docx
 
   The markdown parser is not duplicated here. It is read straight out of
@@ -27,7 +28,8 @@ const html = fs.readFileSync(path.join(here, 'index.html'), 'utf8');
 const core = html.match(/<script id="core">([\s\S]*?)<\/script>/)[1];
 const sandbox = {}; vm.createContext(sandbox); vm.runInContext(core + '\nthis.parseGuide=parseGuide;this.inline=inline;', sandbox);
 const G = sandbox.parseGuide(fs.readFileSync(guidePath, 'utf8'));
-const outPath = process.argv[3] || path.join(here, `Moment_Field_Guide_V${G.meta.version}.docx`);
+const NOTES = G.meta.type === 'notes';
+const outPath = process.argv[3] || path.join(here, NOTES ? `Session_Notes_${path.basename(guidePath, '.md')}.docx` : `Moment_Field_Guide_V${G.meta.version}.docx`);
 
 // ---------- tokens (from the V3 document) ----------
 const C = { teal: '0f4c5c', tealMid: '1b6b7d', ink: '1a1a1a', grey: '5b6770', amber: '8a5a11',
@@ -68,8 +70,9 @@ const para = (children, o = {}) => new Paragraph({
   keepNext: o.keepNext, pageBreakBefore: o.pageBreakBefore, border: o.border, heading: o.heading, numbering: o.numbering, indent: o.indent
 });
 function body(text, o = {}) {
-  const lead = /^\*[^*]+\*$/.test(text.trim());
-  if (lead) return para([run(text.trim().slice(1, -1), { italic: true, color: C.grey })], { after: o.after == null ? 240 : o.after, ...o });
+  const stripped = text.replace(/\s*\{new\}\s*/g, '').trim();
+  const lead = /^\*[^*]+\*$/.test(stripped);
+  if (lead) { const kids = [run(stripped.slice(1, -1), { italic: true, color: C.grey })]; if (/\{new\}/.test(text)) kids.push(dotRun()); return para(kids, { after: o.after == null ? 240 : o.after, ...o }); }
   return para(runs(text), { after: 200, ...o });
 }
 function h3(text) {
@@ -77,10 +80,10 @@ function h3(text) {
 }
 function partHeading(p) {
   return new Paragraph({
-    heading: HeadingLevel.HEADING_1, pageBreakBefore: true, keepNext: true,
+    heading: HeadingLevel.HEADING_1, pageBreakBefore: !NOTES, keepNext: true,
     border: { bottom: { style: BorderStyle.SINGLE, size: 12, color: C.teal, space: 6 } },
-    spacing: { before: 0, after: 160 },
-    children: [new Bookmark({ id: 'part' + p.num, children: [run(`Part ${p.num}.  ${p.title}`, { bold: true, size: 30, color: C.teal })] })]
+    spacing: { before: NOTES ? 360 : 0, after: 160 },
+    children: [new Bookmark({ id: 'part' + p.num, children: [run(NOTES ? p.title : `Part ${p.num}.  ${p.title}`, { bold: true, size: 30, color: C.teal })] })]
   });
 }
 function sectionHeading(s) {
@@ -197,7 +200,7 @@ const children = [];
 // title block
 children.push(para([run(m.kicker.toUpperCase(), { bold: true, size: 20, color: C.tealMid })], { before: 240, after: 60 }));
 children.push(para([run(m.title, { bold: true, size: 52 })], { after: 60 }));
-children.push(para([run(`Version ${m.version}, updated ${m.updated}`, { bold: true, size: 26, color: C.teal })], { after: 120 }));
+children.push(para([run(NOTES ? `Goes with Version ${m.version} of the guide` : `Version ${m.version}, updated ${m.updated}`, { bold: true, size: 26, color: C.teal })], { after: 120 }));
 children.push(para([run(`For ${m.for}. ${m.compiled}`, { size: 20, color: C.grey })],
   { after: 200, border: { bottom: { style: BorderStyle.SINGLE, size: 12, color: C.teal, space: 8 } } }));
 // front matter: the how-to note, then the New in Version table
@@ -207,7 +210,8 @@ for (const s of front.sections) {
   children.push(para([run(s.title, { bold: true, size: 24, color: C.teal })], { before: 120, after: 120, keepNext: true }));
   children.push(...renderBlocks(s.blocks));
 }
-// contents page
+// contents page (skipped for session notes)
+if (!NOTES) {
 children.push(new Paragraph({ children: [new PageBreak()] }));
 children.push(para([run('CONTENTS', { bold: true, size: 22, color: C.teal })], { after: 140, border: { bottom: { style: BorderStyle.SINGLE, size: 8, color: C.line, space: 4 } } }));
 for (const p of G.parts) {
@@ -216,6 +220,7 @@ for (const p of G.parts) {
     children: [run(`Part ${p.num}.  ${p.title}`, { bold: true, size: 22, color: C.teal })] })] }));
   for (const s of p.sections) children.push(new Paragraph({ spacing: { before: 0, after: 24, line: 252 }, indent: { left: 360 },
     children: [new InternalHyperlink({ anchor: s.slug, children: [new TextRun({ text: s.title, font: FONT, size: 21, color: C.tealMid, underline: {} })] })] }));
+}
 }
 // parts
 for (const p of G.parts) {

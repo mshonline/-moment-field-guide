@@ -8,6 +8,7 @@ From the repo (download the current versions, or copy from your local clone):
 
 - `guide.md`
 - `CHANGELOG.md`
+- `sessions/index.json`
 - `index.html` (only needed if you want the docx built in the session; it holds the parser the generator uses)
 - `build-docx.js`
 
@@ -35,10 +36,11 @@ Read the transcript and update guide.md. Rules:
 6. If Marnie used a word for something the guide calls by another name, add it to the synonyms: block.
 7. Anything that was resolved from the Open questions list moves out of that list and into the body with a {new} marker.
 8. Update CHANGELOG.md: add a "## Version [N], [date]" entry at the top with the same table, and keep the older entries.
-9. Then build the docx: run build-docx.js against the new guide.md (it reads the parser from index.html) and give me the .docx.
-10. Finish with a short change summary in the chat: what changed, what you were unsure about, and anything in the transcript you deliberately left out and why.
+9. Write the session notes as sessions/[YYYY-MM-DD].md, using the same conventions with front matter type: notes. Sections: a one-paragraph summary, what got decided, any recipes worth having on their own, what from the last version's notes got folded in, and what is still open. Add the session to sessions/index.json (file, title, one-line summary), newest first.
+10. Then build both docx files: run build-docx.js against the new guide.md and against the session notes (it reads the parser from index.html) and give me both.
+11. Finish with a short change summary in the chat: what changed, what you were unsure about, and anything in the transcript you deliberately left out and why.
 
-Return guide.md, CHANGELOG.md, and the docx as files.
+Return guide.md, CHANGELOG.md, sessions/[date].md, sessions/index.json, and both docx files.
 ```
 
 ## 3. Review before committing
@@ -56,10 +58,12 @@ If something is wrong, say so in the chat and ask for the corrected file. Do not
 ## 4. Commit
 
 1. In the repo, `versions/`: upload the outgoing `guide.md` renamed to `guide-v<old>.md` and the outgoing docx. This is the only step that is easy to forget and impossible to do later.
-2. Upload the new `guide.md` and `CHANGELOG.md` to the repo root (Add file, Upload files, commit; GitHub overwrites the old ones).
+2. Upload the new `guide.md` and `CHANGELOG.md` to the repo root (Add file, Upload files, commit; GitHub overwrites the old ones). Then open the `sessions` folder in the repo and upload the new `[date].md` and `index.json` there.
 3. Wait a minute. Open the app on your phone, pull down to reload or use Check for updates in Settings, and confirm the version at the top and the What's New dot.
 
 `index.html`, `sw.js`, `manifest.json`, and `icons/` do not change in a content update. If a session changes the app itself, bump `CACHE` in `sw.js`.
+
+If Marnie hand-edits the docx or the Google Doc instead of sending notes, upload that docx too and ask for its changes to be diffed against the generated version and folded in. The docx is a copy; the markdown stays the master.
 
 ## 5. Share
 

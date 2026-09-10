@@ -12,6 +12,7 @@ A phone-first, offline-capable reference built from a single markdown file. `gui
 | `build-docx.js`, `package.json` | Generates the Word document from `guide.md` in the V3 house style. `npm install` once, then `node build-docx.js`. |
 | `UPDATE.md` | The runbook for updating after a session, including the prompt to paste. |
 | `manifest.json`, `sw.js`, `icons/` | Home-screen install and offline support. |
+| `sessions/` | One markdown file per coaching session (`YYYY-MM-DD.md`, front matter `type: notes`) plus `index.json`, which the app's Session notes view reads. `node build-docx.js sessions/<date>.md` makes the docx. |
 | `versions/` | Prior versions of `guide.md` and the generated docx, kept for reference. |
 
 ## Put it on GitHub Pages

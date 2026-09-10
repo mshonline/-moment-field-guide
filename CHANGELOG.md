@@ -2,6 +2,24 @@
 
 One entry per version, newest first. The app's What's New view reads this file. Keep the table format: two columns, what changed and where it stands now.
 
+## Version 5, 10 September 2026
+
+Folds in the 10 September session and Marnie's printed notes on Version 4. Part 4 reorganized into three chunks.
+
+| What changed | Where it stands now |
+| --- | --- |
+| Part 4 is three chunks | End of day (two copies, then clear). Editing (rate, cull, export, copyright, ChronoSync). Archive (a finishing step). Each has its own section. |
+| Export the originals with the TIFFs | A second recipe, Copy original files with adjustments off, ticked alongside the TIFF recipe. Two subfolders per export: Edit for Archive TIFF C1 and Edit for Archive Original C1. |
+| Clearing the SD card | Select all, Command Delete, empty the Trash with the card still in the slot. Once the card is on two drives. |
+| Cleaning up an older session | A recipe. Start fresh if little editing was done; otherwise rename, cull, check exports, copyright, export originals. |
+| ChronoSync the whole drive | Never one session at a time, and never to the archive drive. |
+| The archive includes the original DNGs | With the trimmed captures, copyrighted JPEGs and TIFFs, and the final TIFF. |
+| Lenses and ND to the top of the checklists | Phone battery checked joins the photo checklist. |
+| Where things live | Storage location under the hardware icon, per profile. WB lock and record border are Moment settings. Keep RAW under JPEG. |
+| Stock camera RAW toggle | HEIF label at top left of the Camera app. Old HEIC-only sessions have no raw. |
+| Messages Not Delivered | Sign out and in on the Mac's iMessage tab. Green needs the phone nearby and online. |
+| Photo library and space | Personal photos stay; thin throwaways on the laptop; tennis video to its drive; family drive via Export Unmodified Originals. |
+
 ## Version 4, 3 September 2026
 
 Folds in the 3 September session, a walk through the whole guide together. Clarifications rather than new ground.
